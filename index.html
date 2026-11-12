@@ -295,6 +295,39 @@ span.chipx{cursor:default}
 .mixnote{background:rgba(255,248,227,.92);border-radius:10px;padding:6px 10px;margin-bottom:4px}
 .lastc .lyi{width:40px;display:inline-grid;place-items:center;font-size:26px}
 @media (max-width:520px){.cal12 .clab{width:92px}.cal12 .clab b{font-size:11.5px}.cal12 .clab .cico{width:18px;height:18px}}
+/* v13 Videos */
+.vadd input,.vnew input{flex:1;min-width:0;min-height:40px;border-radius:12px;border:3px solid #d9b77a;background:#fffdf4;padding:0 10px;font-size:16px;font-weight:700;color:var(--ink)}
+.vadd .muted{margin-top:6px}.verr{color:var(--redDark)!important;font-weight:800}
+.vh{font-weight:900;font-size:14px;margin:8px 0 3px;color:var(--ink)}
+.ventry{margin-bottom:10px}
+.vtop{display:flex;gap:10px;align-items:center}
+.vthumb{position:relative;flex:none;width:96px;height:54px;border-radius:10px;border:3px solid var(--woodDark);background:radial-gradient(circle at 40% 35%,#e05a3a,#9c2d17);overflow:hidden;display:grid;place-items:center;box-shadow:0 3px 0 rgba(90,55,20,.35)}
+.vthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vthumb .vplay{position:relative;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.92);color:#de4524;font-size:13px;display:grid;place-items:center;border:2px solid var(--redDark);padding-left:2px;box-sizing:border-box}
+.vthumb.big{width:100%;height:auto;aspect-ratio:16/9;max-width:520px;margin:0 auto 8px}.vthumb.big .vplay{width:54px;height:54px;font-size:24px}
+.vmeta{flex:1;min-width:0}
+.vlink{display:block;font-weight:900;font-size:15px;color:#1e6f9c;text-decoration:underline;text-underline-offset:2px;line-height:1.2;overflow-wrap:anywhere}
+.vlink.big{font-size:17px;margin-bottom:2px}
+.vbox{margin-top:8px;background:linear-gradient(#fffbe9,#fff1c4);border:3px dashed var(--orange2);outline:3px solid #ffe08a;outline-offset:-7px;border-radius:14px;padding:10px 12px;box-shadow:0 3px 0 rgba(168,90,0,.25)}
+.vbox p{margin:0;font-size:14px;line-height:1.4}
+.vbox p.vclamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.vbox.pend{border-color:#9aa7b0;outline-color:#e6edf2;background:linear-gradient(#f9fbfc,#eef3f6)}
+.vdur{display:inline-block;font-weight:900;font-size:14px;background:var(--orange);color:#fff;text-shadow:0 1px 0 var(--orangeDark);border:2px solid var(--orangeDark);border-radius:999px;padding:1px 10px;margin-bottom:4px}
+.vbox.pend .vdur{background:#9aa7b0;border-color:#5f6b73;text-shadow:none}
+.vtake{margin:2px 0 0;padding-left:20px;font-size:14px;line-height:1.38}.vtake li{margin-bottom:4px}
+.vsrc{margin-top:6px;font-size:11.5px}
+.vfoot{gap:6px;margin-top:8px;align-items:center}
+.vtodo{display:flex;gap:8px;align-items:flex-start;background:var(--cream);border:3px solid #d9b77a;border-radius:14px;padding:6px 8px;margin-bottom:7px;box-shadow:0 3px 0 rgba(90,55,20,.3)}
+.vtodo textarea{flex:1;min-width:0;border:2px solid transparent;border-radius:10px;background:transparent;font-size:14.5px;font-weight:700;color:var(--ink);resize:none;padding:4px 6px;line-height:1.3;field-sizing:content;min-height:2.6em}
+.vtodo textarea:focus{border-color:#d9b77a;background:#fffdf4;outline:none}
+.vtodo.done textarea{text-decoration:line-through;color:var(--ink2);opacity:.75}
+.vchk{width:38px;height:38px;flex:none;border-radius:50%;border:3px solid var(--greenDark);background:#fff;color:#fff;font-size:20px;font-weight:900;box-shadow:0 3px 0 var(--greenDark);cursor:pointer}
+.vtodo.done .vchk{background:radial-gradient(circle at 35% 30%,#d5ff9e,#6dbb35)}
+.vtools{display:grid;grid-template-columns:repeat(2,30px);gap:4px;flex:none}
+.vmini{width:30px;height:30px;border-radius:9px;border:2px solid var(--woodDark);background:linear-gradient(#fff3d1,#ecd29a);color:var(--ink);font-size:13px;font-weight:900;cursor:pointer;padding:0}
+.vmini[disabled]{opacity:.35}.vmini.on{background:linear-gradient(#a3e566,#5fae2e);border-color:var(--greenDark)}.vmini.del{color:var(--redDark)}
+.vnotes{width:100%;box-sizing:border-box;border-radius:14px;border:3px solid #d9b77a;background:#fffdf4;padding:8px 10px;font-size:15px;font-weight:700;color:var(--ink);resize:vertical;min-height:110px}
+.vsaved{margin-top:3px;color:#fff;text-shadow:0 1px 0 var(--woodLine)}
 </style>
 </head>
 <body>
@@ -690,6 +723,142 @@ function defaultPlanting(ck) {
   if (c.er) { const vm = +c.er[0], bm = +c.er[1], vy = vm < fm ? y + 1 : y, by = bm < vm ? vy + 1 : vy; von = `${vy}-${c.er[0]}`; bis = `${by}-${c.er[1]}`; }
   return P(ck, steps, von, bis, c.winter ? "winter" : "sommer", 1);
 }
+
+/* ---------------- v13: Video-Verzeichnis (YouTube) ----------------
+   Auswertungen werden NICHT in der App erzeugt: Mein Hof (Chat) liest das Transkript und trägt sie hier in VIDEO_DB ein (Schlüssel = YouTube-ID).
+   Eigene Notizen/To-dos liegen getrennt in localStorage (VIDKEY) und gehen bei neuen Auswertungen nicht verloren. */
+const VIDEO_DB = {
+  wLb5mxt0QPc: {
+    title: "Mikrofarmer | Wie Kleine Höfe Große Gewinne Erzielen | Vollständiges Dokument",
+    channel: "Moconomy - Wirtschaft & Finanzen", dur: "32:15", date: "2026-08-11",
+    src: "Automatische deutsche Untertitel (Transkript) + Videodaten von YouTube",
+    kern: "Doku über Market Gardening: Sarah Knapp und ihr Partner Fischer bewirtschaften bei Kirchheimbolanden nur 2.500 m² ökologisch, verkaufen per Gemüsekisten-Abo an rund 200 Haushalte und kommen auf etwa 120.000 € Umsatz bei höchstens 35 Stunden pro Woche. Ihre Hebel: sehr viel samenfreier Kompost statt Jäten, schmale 75-cm-Beete mit dichter Pflanzung, Schnittsalat als Hauptkultur, einfache günstige Geräte und ehrliches Rechnen mit Zeit und Ertrag. Daneben zeigt der Film das Brandenburger Start-up Tiny Farms und die Quereinsteigerin Lisa Wetzel, die in der Uckermark mit verdichtetem Boden startet.",
+    take: [
+      "Kompost dick auf die Beete statt Unkraut hacken: Sie verteilen 2–3 Schubkarren auf ein 16 m langes Beet. Der Kompost ist vorher sterilisiert und damit samenfrei. Für uns heißt das: nur gut durchgerotteten, heißen Kompost aus K1–K3 als Deckschicht nehmen.",
+      "Schmale Beete von 75 cm mit schmalen Wegen und dichter Bepflanzung: Man steigt über das Beet statt drumherum zu laufen, das spart Zeit. Das passt zu unseren Feldbeeten mit 20-cm-Wegen.",
+      "Schnittsalat als Dauerkultur: Bei ihnen steht auf rund 20 % der Fläche immer Salat, er bringt etwa 30 % des Umsatzes. Für uns heißt das: laufend nachsäen, dann gibt es immer frischen Salat aus Gewächshaus und Hochbeet.",
+      "Neue Kulturen testen und den Aufwand ehrlich bewerten: Ihre Zuckererbsen wuchsen gut, das Pflücken dauerte aber viel zu lange, deshalb flogen sie wieder raus.",
+      "Einfache, günstige Technik statt großer Maschinen, z. B. eine Bodenfräse, die ein Akkuschrauber aus dem Baumarkt antreibt.",
+      "Verdichteten Boden zuerst gründlich lockern: Das war bei Lisas Acker in Brandenburg die erste Lektion.",
+      "Auf Wetterextreme vorbereitet sein (Starkregen, Hagel, Trockenheit). Bei uns helfen Regentonne und Gardena-Tropfkreise.",
+      "Feste Saison mit Pause: Sie gärtnern von Februar bis Ende November, Dezember und Januar sind frei. Die ruhige Zeit eignet sich zum Planen.",
+    ],
+    todos: [
+      "Kompost K1–K3 prüfen: Welcher Haufen ist reif und samenfrei genug als Deckschicht für die Feldbeete im Frühjahr?",
+      "Feldbeete für 2027 testweise auf 75 cm Breite planen (Beetbreite in der App auf 0,75 m stellen)",
+      "Schnittsalat-Folgesaaten im Gewächshaus und Hochbeet alle 2–3 Wochen einplanen (Planung → Aussaat)",
+      "Verdichtete Stellen im Feld mit der Grabegabel lockern, bevor Kompost aufgetragen wird",
+      "2027 eine neue Kultur testen und den Ernteaufwand in den Notizen festhalten",
+      "Ernten in der Ernte-Scheune eintragen, um zu sehen, welche Kulturen sich lohnen",
+      "Vor Saisonstart Regentonne und die 3 Gardena-Tropfkreise auf Trockenphasen vorbereiten",
+      "Kartoffeln im Frühjahr 10–13 cm tief legen (wie im Video gezeigt)",
+    ],
+  },
+};
+const VIDKEY = "meinHof2027.videos";
+let VS = null;
+function vLoad() {
+  try { VS = JSON.parse(localStorage.getItem(VIDKEY) || "null"); } catch (e) { VS = null; }
+  if (!VS || !Array.isArray(VS.list)) VS = { list: [{ id: "wLb5mxt0QPc", addedAt: "2026-11-12", notes: "", todos: [], origMerged: false }] };
+  VS.list.forEach(vMerge);
+}
+function vSave() { try { localStorage.setItem(VIDKEY, JSON.stringify(VS)); } catch (e) { toast("⚠️ Videos konnten nicht gespeichert werden.", true); } }
+const vOrig = id => (VIDEO_DB[id] ? VIDEO_DB[id].todos : []).map((t, i) => ({ id: "o" + i, t, done: false, orig: true }));
+function vMerge(v) {   // Sobald eine Auswertung da ist: Original-To-dos vorne einfügen, eigene To-dos bleiben erhalten
+  if (!Array.isArray(v.todos)) v.todos = [];
+  if (typeof v.notes !== "string") v.notes = "";
+  if (v.origMerged || !VIDEO_DB[v.id]) return false;
+  const have = new Set(v.todos.map(t => t.t.trim().toLowerCase()));
+  v.todos = [...vOrig(v.id).filter(t => !have.has(t.t.trim().toLowerCase())), ...v.todos];
+  v.origMerged = true; return true;
+}
+function ytId(s) {
+  s = String(s || "").trim(); if (!s) return null;
+  if (!/^https?:\/\//i.test(s)) s = "https://" + s;
+  let u; try { u = new URL(s); } catch (e) { return null; }
+  const h = u.hostname.toLowerCase().replace(/^(www|m|music)\./, ""), ok = id => /^[A-Za-z0-9_-]{11}$/.test(id || "") ? id : null;
+  if (h === "youtu.be") return ok(u.pathname.split("/")[1]);
+  if (h === "youtube.com" || h === "youtube-nocookie.com") {
+    if (u.pathname === "/watch") return ok(u.searchParams.get("v"));
+    const m = u.pathname.match(/^\/(shorts|embed|live|v)\/([^/?#]+)/); if (m) return ok(m[2]);
+  }
+  return null;
+}
+const vById = id => VS.list.find(v => v.id === id);
+const vUrl = id => "https://www.youtube.com/watch?v=" + id;
+function vTitle(v) { const d = VIDEO_DB[v.id]; return d ? d.title : (v.title || "YouTube-Video " + v.id); }
+function vThumb(id, cls) { return `<span class="vthumb ${cls || ""}"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vplay">▶</span></span>`; }
+function vBoxHTML(v, full) {
+  const d = VIDEO_DB[v.id];
+  if (!d) return `<div class="vbox pend"><div class="vdur">⏱ Dauer: noch unbekannt</div><b>⏳ Auswertung ausstehend</b><div class="muted">Schick den Link im Chat an Mein Hof. Sobald die Auswertung eingetragen ist, erscheint sie hier automatisch – deine Notizen und To-dos bleiben erhalten.</div></div>`;
+  return `<div class="vbox"><div class="vdur">⏱ Dauer: ${esc(d.dur)}</div><div class="vh">🎯 Kern des Videos</div><p${full ? "" : ` class="vclamp"`}>${esc(d.kern)}</p>${full ? `<div class="vh">🌱 Das können wir übernehmen</div><ul class="vtake">${d.take.map(t => `<li>${esc(t)}</li>`).join("")}</ul><div class="muted vsrc">Quelle: ${esc(d.src)}${d.date ? " · hochgeladen " + fmtDate(d.date) : ""}</div>` : ""}</div>`;
+}
+function videosHTML() {
+  const v = UI.video && vById(UI.video);
+  if (v) return videoDetailHTML(v);
+  let h = `<div class="card vadd"><div class="vh" style="margin-top:0">➕ YouTube-Video hinzufügen</div><div class="row" style="gap:8px;flex-wrap:nowrap"><input id="vUrl" type="url" inputmode="url" placeholder="https://youtu.be/…" autocomplete="off" aria-label="YouTube-Link"><button class="btn sm" data-act="vAdd">Speichern</button></div><div class="muted" id="vErr">Links von youtube.com, youtu.be oder YouTube Shorts. Die Auswertung schreibt Mein Hof im Chat.</div></div>`;
+  h += `<div class="sec"><h3>🎬 Meine Videos (${VS.list.length})</h3>`;
+  if (!VS.list.length) h += `<div class="card muted">Noch keine Videos – füge oben einen YouTube-Link ein.</div>`;
+  for (const x of VS.list) {
+    const n = x.todos.length, dn = x.todos.filter(t => t.done).length;
+    h += `<div class="ventry card" data-vid="${x.id}"><div class="vtop">${vThumb(x.id)}<div class="vmeta"><a class="vlink" href="${vUrl(x.id)}" target="_blank" rel="noopener">${esc(vTitle(x))} ↗</a><div class="muted">${VIDEO_DB[x.id] ? "📺 " + esc(VIDEO_DB[x.id].channel) : "youtu.be/" + x.id}</div></div></div>${vBoxHTML(x, false)}<div class="row vfoot"><span class="pill" style="background:#eaffd6">✅ To-dos ${dn}/${n}</span>${x.notes.trim() ? `<span class="pill" style="background:#fff">📝 Notizen</span>` : ""}<span style="flex:1"></span><button class="btn sm o" data-act="vOpen" data-vid="${x.id}">Öffnen ▸</button></div></div>`;
+  }
+  return h + `</div>`;
+}
+function videoDetailHTML(v) {
+  const d = VIDEO_DB[v.id];
+  let h = `<div class="row" style="gap:8px;margin-bottom:6px"><button class="btn sm w" data-act="vBack">‹ Alle Videos</button><span style="flex:1"></span><button class="btn sm r" data-act="vDel" data-vid="${v.id}" aria-label="Video entfernen">🗑️</button></div>`;
+  h += `<div class="card ventry"><div class="vtop">${vThumb(v.id, "big")}</div><a class="vlink big" href="${vUrl(v.id)}" target="_blank" rel="noopener">${esc(vTitle(v))} ↗</a><div class="muted">${d ? "📺 " + esc(d.channel) + " · " : ""}Öffnet das Video auf YouTube</div>${vBoxHTML(v, true)}</div>`;
+  const n = v.todos.length, dn = v.todos.filter(t => t.done).length;
+  h += `<div class="sec"><h3>✅ To-do-Liste (${dn}/${n})</h3><div class="vtodos">`;
+  v.todos.forEach((t, i) => {
+    h += `<div class="vtodo ${t.done ? "done" : ""}" data-tid="${t.id}"><button class="vchk" data-act="vTodoChk" data-vid="${v.id}" data-tid="${t.id}" aria-label="${t.done ? "Wieder offen" : "Erledigt"}">${t.done ? "✓" : ""}</button><textarea rows="2" data-vfield="todo" data-vid="${v.id}" data-tid="${t.id}" aria-label="To-do bearbeiten">${esc(t.t)}</textarea><div class="vtools"><button class="vmini" data-act="vTodoMove" data-dir="-1" data-vid="${v.id}" data-tid="${t.id}" aria-label="Nach oben" ${i ? "" : "disabled"}>▲</button><button class="vmini" data-act="vTodoMove" data-dir="1" data-vid="${v.id}" data-tid="${t.id}" aria-label="Nach unten" ${i < n - 1 ? "" : "disabled"}>▼</button><button class="vmini ${t.task ? "on" : ""}" data-act="vTodoTask" data-vid="${v.id}" data-tid="${t.id}" aria-label="${t.task ? "Aus Aufgaben entfernen" : "Als Aufgabe übernehmen"}" title="${t.task ? "Steht in Aufgaben – nochmal tippen zum Entfernen" : "→ Aufgabe"}">📋</button><button class="vmini del" data-act="vTodoDel" data-vid="${v.id}" data-tid="${t.id}" aria-label="To-do löschen">✕</button></div></div>`;
+  });
+  if (!n) h += `<div class="card muted">Keine To-dos – füge unten eins hinzu.</div>`;
+  h += `</div><div class="row vnew" style="gap:8px;flex-wrap:nowrap"><input id="vNewTodo" type="text" placeholder="Neues To-do …" aria-label="Neues To-do"><button class="btn sm" data-act="vTodoAdd" data-vid="${v.id}">➕</button></div><div class="muted" style="margin-top:4px">📋 = als Aufgabe in „Aufgaben“ übernehmen (heute fällig) · ▲▼ = Reihenfolge</div></div>`;
+  h += `<div class="sec"><h3>📝 Meine Notizen</h3><textarea class="vnotes" data-vfield="notes" data-vid="${v.id}" rows="5" placeholder="Eigene Gedanken, Mengen, Sorten …" aria-label="Meine Notizen">${esc(v.notes)}</textarea><div class="muted vsaved">Wird automatisch gespeichert.</div></div>`;
+  if (d) h += `<div class="sec"><button class="btn w sm" data-act="vRestore" data-vid="${v.id}">↺ Original-Auswertung wiederherstellen</button><div class="muted" style="margin-top:4px">Setzt die To-do-Liste auf die Auswertung von Mein Hof zurück. Deine Notizen bleiben.</div></div>`;
+  return h;
+}
+function vTodo(a) { const v = vById(a.dataset.vid); return [v, v && v.todos.find(t => t.id === a.dataset.tid)]; }
+function vRerender() { const sc = $("#panel .scroll"), y = sc ? sc.scrollTop : 0; renderAll(); const s2 = $("#panel .scroll"); if (s2) s2.scrollTop = y; }
+function videoTasks() {
+  const out = [];
+  for (const v of VS.list) for (const t of v.todos) if (t.task) out.push({ id: `v:${v.id}:${t.id}`, date: t.task, title: "🎬 " + t.t, detail: "Aus Video: " + vTitle(v), where: [], kind: "video", vid: v.id, tid: t.id, done: t.done ? (t.doneAt || t.task) : null });
+  return out;
+}
+const videoAct = {
+  vAdd: () => {
+    const inp = $("#vUrl"), err = $("#vErr"), id = ytId(inp && inp.value);
+    if (!id) { if (err) { err.textContent = "⚠️ Das ist kein gültiger YouTube-Link (youtube.com/watch?v=…, youtu.be/… oder /shorts/…)."; err.classList.add("verr"); } toast("⚠️ Kein gültiger YouTube-Link", true); return; }
+    if (vById(id)) { UI.video = id; vRerender(); toast("🎬 Das Video ist schon in der Liste."); return; }
+    const v = { id, addedAt: localISO(new Date()), notes: "", todos: [], origMerged: false }; vMerge(v);
+    VS.list.unshift(v); vSave(); UI.video = id; vRerender();
+    toast(VIDEO_DB[id] ? "🎬 Video gespeichert – Auswertung ist schon da!" : "🎬 Video gespeichert – Auswertung ausstehend. Schick den Link im Chat an Mein Hof.");
+  },
+  vOpen: a => { UI.video = a.dataset.vid; renderAll(); const sc = $("#panel .scroll"); if (sc) sc.scrollTop = 0; },
+  vBack: () => { UI.video = null; renderAll(); },
+  vDel: async a => { const v = vById(a.dataset.vid); if (v && await ask("Video entfernen?", `„${vTitle(v)}“ mit Notizen und To-dos aus der Liste löschen?`, "Entfernen", true)) { VS.list = VS.list.filter(x => x !== v); vSave(); UI.video = null; renderAll(); toast("🗑️ Video entfernt"); } },
+  vTodoChk: a => { const [v, t] = vTodo(a); if (!t) return; t.done = !t.done; if (t.done) t.doneAt = today(); else delete t.doneAt; vSave(); if (t.done) cheerAt(a.getBoundingClientRect().left + 20, a.getBoundingClientRect().top + 20); vRerender(); },
+  vTodoDel: a => { const [v, t] = vTodo(a); if (!t) return; v.todos = v.todos.filter(x => x !== t); vSave(); vRerender(); toast("✕ To-do gelöscht"); },
+  vTodoMove: a => { const [v, t] = vTodo(a); if (!t) return; const i = v.todos.indexOf(t), j = i + (+a.dataset.dir); if (j < 0 || j >= v.todos.length) return; v.todos.splice(i, 1); v.todos.splice(j, 0, t); vSave(); vRerender(); },
+  vTodoAdd: a => { const v = vById(a.dataset.vid), inp = $("#vNewTodo"), s = inp && inp.value.trim(); if (!v || !s) { if (inp) inp.focus(); return; } v.todos.push({ id: "u" + uid(), t: s, done: false }); vSave(); vRerender(); const n = $("#vNewTodo"); if (n) n.focus(); },
+  vTodoTask: a => { const [v, t] = vTodo(a); if (!t) return; if (t.task) { delete t.task; toast("📋 Aus den Aufgaben entfernt"); } else { t.task = today(); toast("📋 In Aufgaben übernommen (heute fällig)"); } vSave(); vRerender(); },
+  vRestore: async a => { const v = vById(a.dataset.vid); if (v && VIDEO_DB[v.id] && await ask("Original wiederherstellen?", "Die To-do-Liste wird auf die Auswertung von Mein Hof zurückgesetzt. Eigene und geänderte To-dos gehen verloren, deine Notizen bleiben.", "Wiederherstellen", true)) { v.todos = vOrig(v.id); v.origMerged = true; vSave(); vRerender(); toast("↺ Original-Auswertung wiederhergestellt"); } },
+};
+let vNoteTimer = null;
+document.addEventListener("input", e => {
+  const el = e.target, f = el.dataset && el.dataset.vfield; if (!f) return;
+  const v = vById(el.dataset.vid); if (!v) return;
+  if (f === "notes") v.notes = el.value;
+  if (f === "todo") { const t = v.todos.find(x => x.id === el.dataset.tid); if (t) t.t = el.value; }
+  clearTimeout(vNoteTimer); vNoteTimer = setTimeout(vSave, 250);
+});
+document.addEventListener("change", e => { const el = e.target; if (el.dataset && el.dataset.vfield) { clearTimeout(vNoteTimer); if (el.dataset.vfield === "todo") { const v = vById(el.dataset.vid), t = v && v.todos.find(x => x.id === el.dataset.tid); if (t && !el.value.trim()) { v.todos = v.todos.filter(x => x !== t); vSave(); vRerender(); toast("✕ Leeres To-do entfernt"); return; } if (t) t.t = el.value.trim(); } vSave(); } });
+document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target && (e.target.id === "vUrl" || e.target.id === "vNewTodo")) { e.preventDefault(); const b = e.target.parentNode.querySelector("[data-act]"); if (b) b.click(); } });
+window.addEventListener("pagehide", () => { if (VS) vSave(); });
+vLoad();
+
 function allTasks() {
   const list = [];
   for (const t of SCHEDULE) list.push({ ...t, kind: "plan", done: S.taskDone[t.id] || null });
@@ -701,6 +870,7 @@ function allTasks() {
     if (p.ernte) list.push({ id: `h:${p.id}`, date: p.ernte.von, title: `${c.e} ${c.n} ernten`, detail: `Erntezeit bis ${fmtDM(p.ernte.bis)} ${p.ernte.bis.slice(0, 4)}.`, where: [b.id], kind: "harvest", bed: b.id, pl: p.id, done: p.status === "geerntet" ? (p.harvestedAt || "x") : null });
   }
   list.push(...pikTasks());
+  if (VS) list.push(...videoTasks());
   return list.sort((a, b) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title));
 }
 
@@ -738,6 +908,7 @@ function resetPlanting(bedId, plId) {
 function completeTask(id, pt) {
   const t = allTasks().find(x => x.id === id); if (!t || t.done) return;
   if (t.kind === "plan" || t.kind === "pik") { S.taskDone[id] = today(); cheer(pt); toast(`✅ ${t.title}`); renderAll(); return; }
+  if (t.kind === "video") { const v = vById(t.vid), x = v && v.todos.find(y => y.id === t.tid); if (x) { x.done = true; x.doneAt = today(); vSave(); } cheer(pt); toast(`✅ ${t.title}`); renderAll(); return; }
   if (t.kind === "harvest") return harvestDialog(t.bed, t.pl, pt);
   setStatus(t.bed, t.pl, SOW.includes(t.art) ? "gesaet" : "gepflanzt", pt);
 }
@@ -1123,7 +1294,7 @@ function wetterHTML() {
 }
 
 /* ---------------- HUD & Menü ---------------- */
-const MENU = [["hof", "🏡", "Ganzer Hof"], ["gh", "🌡️", "Gewächshaus"], ["kompost", "♻️", "Kompost"], ["bewaesserung", "💧", "Bewässerung"], ["kamera", "📹", "Kamera"], ["aufgaben", "📋", "Aufgaben"], ["planung", "🪴", "Planung"], ["wetter", "⛅", "Wetter"], ["lexikon", "📖", "Lexikon"], ["ernte", "🧺", "Ernte"], ["einst", "⚙️", "Optionen"]];
+const MENU = [["hof", "🏡", "Ganzer Hof"], ["gh", "🌡️", "Gewächshaus"], ["kompost", "♻️", "Kompost"], ["bewaesserung", "💧", "Bewässerung"], ["kamera", "📹", "Kamera"], ["aufgaben", "📋", "Aufgaben"], ["planung", "🪴", "Planung"], ["wetter", "⛅", "Wetter"], ["lexikon", "📖", "Lexikon"], ["ernte", "🧺", "Ernte"], ["videos", "🎬", "Videos"], ["einst", "⚙️", "Optionen"]];
 function dueCount() { const w = addDays(today(), 7); return allTasks().filter(t => !t.done && t.date <= w).length; }
 function renderHUD() {
   $("#dateTxt").textContent = fmtDate(today()) + (S.settings.previewDate ? " (Vorschau)" : "");
@@ -2294,6 +2465,7 @@ function openCamera() {
 /* ---------------- Ansichten ---------------- */
 function nav(v) {
   if (v === "wetter") wxLoad(!WX.d || Date.now() - WX.ts > 10 * 6e4);
+  if (v === "videos" && UI.view !== "videos") UI.video = null;
   UI.more = false; UI.view = v; UI.tool = null; UI.draft = null; UI.hose = null; UI.fieldEdit = false; UI.guides = null; UI.treeTool = null; if (v !== "hof" && v !== "gh") UI.treeSel = null;
   if (v !== "hof" && v !== "gh") { UI.sel = null; UI.edit = false; }
   renderAll(); animSync();
@@ -2375,13 +2547,13 @@ function openPicker(ctx, bedId) {
   showModal(`<button class="closeX" data-act="closeModal" aria-label="Schließen">✕</button><div class="ribbon">Saatgut wählen</div><p style="color:#fff;font-weight:800;margin:0 0 8px;text-shadow:0 1px 0 #000">${ctx === "draw" ? "Was soll ins neue Beet? Danach das Beet auf die Karte ziehen." : "Welches Gemüse oder Kraut kommt dazu?"}</p><div class="scroll">${body}</div>`);
 }
 function panelHTML(v) {
-  const titles = { kompost: "♻️ Kompost", aufgaben: "📋 Aufgaben", planung: "🪴 Planung & Pikiertisch", lexikon: "📖 Lexikon", ernte: "🧺 Ernte-Scheune", einst: "⚙️ Einstellungen", bewaesserung: "💧 Bewässerung", kamera: "📹 Kamera", wetter: "⛅ Wetter · Ahrensfelde" };
-  const body = { wetter: wetterHTML, kompost: kompostHTML, aufgaben: aufgabenHTML, planung: planungHTML, lexikon: lexikonHTML, ernte: ernteHTML, einst: einstHTML, bewaesserung: bewaesserungHTML, kamera: kameraHTML }[v];
+  const titles = { kompost: "♻️ Kompost", aufgaben: "📋 Aufgaben", planung: "🪴 Planung & Pikiertisch", lexikon: "📖 Lexikon", ernte: "🧺 Ernte-Scheune", einst: "⚙️ Einstellungen", bewaesserung: "💧 Bewässerung", kamera: "📹 Kamera", wetter: "⛅ Wetter · Ahrensfelde", videos: "🎬 Videos" };
+  const body = { wetter: wetterHTML, kompost: kompostHTML, aufgaben: aufgabenHTML, planung: planungHTML, lexikon: lexikonHTML, ernte: ernteHTML, einst: einstHTML, bewaesserung: bewaesserungHTML, kamera: kameraHTML, videos: videosHTML }[v];
   return `<div class="panelwrap${v === "wetter" ? " wxw" : ""}"><div class="panel wood"><button class="closeX" data-act="nav" data-view="hof" aria-label="Zurück zum Hof">✕</button><div class="ribbon">${titles[v] || ""}</div><div class="scroll">${body ? body() : ""}</div></div></div>`;
 }
 function taskHTML(t, T) {
   const d = parseISO(t.date), over = !t.done && t.date < T;
-  const where = (t.where || []).map(id => `<span class="where" data-act="goto" data-id="${id}">📍 ${esc(unitName(id))}</span>`).join("") || `<span class="where">📍 Ganzer Hof</span>`;
+  const where = t.kind === "video" ? `<span class="where" data-act="vGo" data-vid="${esc(t.vid)}">🎬 Zum Video</span>` : (t.where || []).map(id => `<span class="where" data-act="goto" data-id="${id}">📍 ${esc(unitName(id))}</span>`).join("") || `<span class="where">📍 Ganzer Hof</span>`;
   return `<div class="task ${over ? "over" : ""} ${t.done ? "done" : ""}"><div class="dt"><small>${WD[d.getDay()]}</small><b>${d.getDate()}</b><small>${MON[d.getMonth()]} ${String(d.getFullYear()).slice(2)}</small></div>
     <div class="tx"><b>${esc(t.title)}</b><div class="muted">${esc(t.detail || "")}</div>${where}</div>
     ${t.done ? `<button class="chk d" disabled aria-label="Erledigt">✓</button>` : `<button class="chk" data-act="task" data-id="${esc(t.id)}" aria-label="Erledigt markieren">✓</button>`}</div>`;
@@ -2600,6 +2772,7 @@ const ACT = {
   reset: async () => { if (await ask("Hof zurücksetzen?", "Alles auf den Startplan zurücksetzen? Tipp: vorher ein Backup exportieren.", "Zurücksetzen", true)) { S = starterState(); saveNow(); UI.sel = null; nav("hof"); toast("🌱 Neuer Start!"); } },
 };
 document.addEventListener("click", e => { const a = e.target.closest("[data-act]"); if (!a) return; const f = ACT[a.dataset.act]; if (f) f(a, e); });
+Object.assign(ACT, videoAct, { vGo: a => { nav("videos"); UI.video = a.dataset.vid; renderAll(); } });
 Object.assign(ACT, planAct, { planGo: a => { UI.planTab = a.dataset.tab; nav("planung"); } });
 document.addEventListener("change", e => {
   const el = e.target, f = el.dataset && el.dataset.field; if (!f) return;
@@ -2630,7 +2803,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") { if ($("#mo
 
 function exportJSON() {
   saveNow();
-  const data = JSON.stringify({ app: "mein-hof-2027", version: 3, exportedAt: new Date().toISOString(), state: S }, null, 1);
+  const data = JSON.stringify({ app: "mein-hof-2027", version: 3, exportedAt: new Date().toISOString(), state: S, videos: VS }, null, 1);
   const name = `mein-hof-backup-${localISO(new Date())}.json`;
   try {
     const blob = new Blob([data], { type: "application/json" });
@@ -2648,6 +2821,7 @@ $("#importFile").addEventListener("change", async e => {
     if (!st || !Array.isArray(st.beds) || !Array.isArray(st.bins)) throw new Error("kein gültiges Hof-Backup");
     if (await ask("Backup laden?", `${obj.exportedAt ? "Backup vom " + new Date(obj.exportedAt).toLocaleString("de-DE") + " laden?" : "Dieses Backup laden?"} Der aktuelle Stand wird ersetzt.`, "Laden")) {
       const base = starterState(); migrated = null; let ns = migrate(st); if (ns === st) { ns = Object.assign(base, st); ns.settings = Object.assign(starterState().settings, st.settings || {}); }
+      if (obj.videos && Array.isArray(obj.videos.list)) { VS = obj.videos; VS.list.forEach(vMerge); vSave(); }
       S = ns; saveNow(); UI.sel = null; nav("hof"); toast(migrated ? "✅ Backup geladen und auf den neuen Lageplan (v3) übertragen!" : "✅ Backup geladen!");
     }
   } catch (err) { toast("⚠️ Datei konnte nicht gelesen werden: " + err.message, true); }
@@ -2668,7 +2842,7 @@ if (firstRun) { saveNow(); setTimeout(() => toast("🌻 Willkommen auf deinem Ho
 else if (migrated && migrated.v7 && migrated.from === 3) { saveNow(); setTimeout(() => toast("📦 Neu: 2 Hochbeete (1 × 1 m) zwischen Gewächshaus und Feld. Um jedes Beet draußen läuft jetzt ein 20-cm-Weg – Gewächshaus-Beete bleiben wie sie sind."), 400); }
 else if (migrated) { saveNow(); setTimeout(() => toast("🗺️ Neue Hof-Ansicht! Feld mit Mittelweg, Tropfschläuche, Kamera – Kulturen, Ernte und Häkchen sind geblieben." + (migrated.moved.length ? ` ${migrated.moved.length} eigene(s) Beet(e) neu platziert – bitte prüfen.` : ""), !!migrated.moved.length), 400); }
 window.__stepTest = dt => stepSprites(dt); window.__stage = stage;
-window.__hof = { blocked, fitRect, isoBox, renderScene, renderAll, selectBed, nav, openPicker, openLastYear, defaultPlanting, bedById, PIK, CAL_RAW, calSegs, cdur, pikDerive, rcItem, recItem, rotCheck, compat, mixGroups, betterAfter, pikTasks, allTasks, planAct, UI, bedCtx, WX, wxLoad, wxFrost, wxDays, wxToday, wxIcon, CROPS, plantGrid, bedClash, bedsClash, BIN_POS, foot, HF, HOCH_SOIL, HOCH_H, overlap, snapOf, migrate, starterState, KEY, PW, alignSnap, snapTargets, get S() { return S; }, V, UI, SPR, catTarget, selectBed, toScreen, toWorld, toIso, fitView, nav, renderAll, saveView, loadView, renderScene, petCat, hoseCoverage, iso };
+window.__hof = { blocked, fitRect, isoBox, renderScene, renderAll, selectBed, nav, openPicker, openLastYear, defaultPlanting, bedById, PIK, CAL_RAW, calSegs, cdur, pikDerive, rcItem, recItem, rotCheck, compat, mixGroups, betterAfter, pikTasks, allTasks, planAct, VIDEO_DB, ytId, videoTasks, get VS() { return VS; }, vLoad, VIDKEY, UI, bedCtx, WX, wxLoad, wxFrost, wxDays, wxToday, wxIcon, CROPS, plantGrid, bedClash, bedsClash, BIN_POS, foot, HF, HOCH_SOIL, HOCH_H, overlap, snapOf, migrate, starterState, KEY, PW, alignSnap, snapTargets, get S() { return S; }, V, UI, SPR, catTarget, selectBed, toScreen, toWorld, toIso, fitView, nav, renderAll, saveView, loadView, renderScene, petCat, hoseCoverage, iso };
 </script>
 </body>
 </html>
